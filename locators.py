@@ -78,9 +78,12 @@ LOGOUT_BUTTON = (By.XPATH, "//button[contains(text(),'Выход')]")
 
 # Таб «Булки»
 BUNS_TAB = (By.XPATH, "//span[text()='Булки']/parent::div")
+BUNS_TAB_ACTIVE = (By.XPATH, "//span[text()='Булки']/parent::div[contains(@class, 'tab_tab_type_current')]")
 
 # Таб «Соусы»
 SAUCES_TAB = (By.XPATH, "//span[text()='Соусы']/parent::div")
+SAUCES_TAB_ACTIVE = (By.XPATH, "//span[text()='Соусы']/parent::div[contains(@class, 'tab_tab_type_current')]")
 
 # Таб «Начинки»
 FILLINGS_TAB = (By.XPATH, "//span[text()='Начинки']/parent::div")
+FILLINGS_TAB_ACTIVE = (By.XPATH, "//span[text()='Начинки']/parent::div[contains(@class, 'tab_tab_type_current')]")

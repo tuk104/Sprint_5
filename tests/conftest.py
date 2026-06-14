@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators import *
+from data import *
 
 
 # ==================== ГЕНЕРАТОРЫ ====================
@@ -30,7 +31,7 @@ def generate_name():
 @pytest.fixture
 def driver():
     driver = webdriver.Chrome()
-    driver.get("https://stellarburgers.education-services.ru/")
+    driver.get(URL)
     driver.maximize_window()
     yield driver
     driver.quit()
@@ -44,14 +45,6 @@ def new_user_data():
         "name": generate_name(),
         "email": generate_email(),
         "password": generate_password(8)
-    }
-
-@pytest.fixture
-def existing_user_data():
-    return {
-        "name": "Павлуша",
-        "email": "andreev_48@gmail.com",
-        "password": "qwertyasdfgh"
     }
 
 @pytest.fixture
@@ -106,18 +99,18 @@ def registered_user(driver, new_user_data):
 
 
 @pytest.fixture
-def authorized_user(driver, existing_user_data):
+def authorized_user(driver):
     driver.find_element(*PERSONAL_ACCOUNT_BUTTON).click()
     
     WebDriverWait(driver, 5).until(
         EC.visibility_of_element_located(LOGIN_EMAIL_INPUT)
     )
-    driver.find_element(*LOGIN_EMAIL_INPUT).send_keys(existing_user_data["email"])
-    driver.find_element(*LOGIN_PASSWORD_INPUT).send_keys(existing_user_data["password"])
+    driver.find_element(*LOGIN_EMAIL_INPUT).send_keys(EXISTING_USER["email"])
+    driver.find_element(*LOGIN_PASSWORD_INPUT).send_keys(EXISTING_USER["password"])
     driver.find_element(*LOGIN_BUTTON).click()
 
     WebDriverWait(driver, 5).until(
         EC.visibility_of_element_located(CHECKOUT_BUTTON)
     )
     
-    return existing_user_data
+    return EXISTING_USER

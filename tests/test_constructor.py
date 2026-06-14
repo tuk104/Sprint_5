@@ -20,7 +20,7 @@ class TestConstructor:
         WebDriverWait(driver, 5).until(
             EC.visibility_of_element_located(BUNS_TAB)
         )
-        assert "tab_tab_type_current__2BEPc" in driver.find_element(*BUNS_TAB).get_attribute("class")
+        assert driver.find_element(*BUNS_TAB_ACTIVE).is_displayed()
     
     def test_switch_to_sauces_section(self, driver):
         # Кликаем на таб "Соусы"
@@ -30,7 +30,7 @@ class TestConstructor:
         WebDriverWait(driver, 5).until(
             EC.visibility_of_element_located(SAUCES_TAB)
         )
-        assert "tab_tab_type_current__2BEPc" in driver.find_element(*SAUCES_TAB).get_attribute("class")
+        assert driver.find_element(*SAUCES_TAB_ACTIVE).is_displayed()
     
     def test_switch_to_fillings_section(self, driver):
         # Кликаем на таб "Начинки"
@@ -40,4 +40,4 @@ class TestConstructor:
         WebDriverWait(driver, 5).until(
             EC.visibility_of_element_located(FILLINGS_TAB)
         )
-        assert "tab_tab_type_current__2BEPc" in driver.find_element(*FILLINGS_TAB).get_attribute("class")
+        assert driver.find_element(*FILLINGS_TAB_ACTIVE).is_displayed()
